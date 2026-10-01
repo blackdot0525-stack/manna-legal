@@ -1,6 +1,6 @@
 # 만나 — 법적 페이지
 
-만나(Manna) 앱의 이용약관 · 개인정보 처리방침 · 계정 삭제 안내를 서빙하는 정적 사이트다.
+만나(Manna) 앱의 이용약관 · 개인정보 처리방침 · 계정 삭제 안내 · 아동 안전 표준을 서빙하는 정적 사이트다.
 
 - 사이트: https://blackdot0525-stack.github.io/manna-legal/
 - 문의: manna.app.help@gmail.com
