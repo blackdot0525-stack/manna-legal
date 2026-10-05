@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://blackdot0525-stack.github.io/manna-legal/sitemap.xml
