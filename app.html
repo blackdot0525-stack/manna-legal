@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>만나 앱 받기</title>
+<meta name="description" content="만나 - 가치관으로 알아가는 소개팅 앱. Google Play에서 받을 수 있어요." />
+<link rel="canonical" href="https://blackdot0525-stack.github.io/manna-legal/app.html" />
+<link rel="icon" type="image/png" href="./icon-192.png" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:site_name" content="만나" />
+<meta property="og:title" content="만나 앱 받기" />
+<meta property="og:description" content="사진에서 시작해 가치관으로 알아가는 소개팅 앱. Google Play에서 받을 수 있어요." />
+<meta property="og:url" content="https://blackdot0525-stack.github.io/manna-legal/app.html" />
+<meta property="og:image" content="https://blackdot0525-stack.github.io/manna-legal/icon-512.png" />
+<style>
+  :root { --bg: #f7f2ec; --surface: #fffdfa; --text: #2b2228; --muted: #6f6168; --primary: #65324f; --on-primary: #ffffff; --border: #e6dcd3; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17131a; --surface: #211b24; --text: #f4ecef; --muted: #b9aab3; --primary: #c98aab; --on-primary: #1a1318; --border: #3a3040; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px;
+         background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; }
+  main { width: 100%; max-width: 380px; text-align: center; background: var(--surface); border: 1px solid var(--border);
+         border-radius: 28px; padding: 36px 24px 28px; }
+  img { width: 112px; height: 112px; border-radius: 26px; }
+  h1 { margin: 18px 0 6px; font-size: 26px; }
+  p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 15px; }
+  .cta { display: block; margin-top: 26px; padding: 16px 20px; border-radius: 999px; background: var(--primary); color: var(--on-primary);
+         font-size: 17px; font-weight: 700; text-decoration: none; min-height: 48px; }
+  .alt { display: inline-block; margin-top: 14px; color: var(--muted); font-size: 14px; }
+  .hint { margin-top: 22px; font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <img src="./icon-512.png" alt="만나" />
+  <h1>만나</h1>
+  <p>사진에서 시작해 가치관으로 알아가는 소개팅 앱.<br />서로 관심이 닿으면 대화는 무료예요.</p>
+  <a class="cta" id="get" href="https://play.google.com/store/apps/details?id=kr.manna.app">Google Play에서 받기</a>
+  <a class="alt" href="https://play.google.com/store/apps/details?id=kr.manna.app">웹에서 스토어 열기</a>
+  <p class="hint">버튼이 열리지 않으면 오른쪽 위 ⋮ 메뉴에서<br />«브라우저에서 열기»를 눌러 주세요.</p>
+</main>
+<script>
+  // 인스타그램 등 앱 안 브라우저는 play.google.com 주소를 Play 스토어 앱으로 넘기지 못할 때가 있다.
+  // Android 에서는 Play 스토어 앱을 직접 여는 intent 주소를 쓰고, 열 수 없으면 웹 스토어로 넘어간다.
+  (function () {
+    if (!/Android/i.test(navigator.userAgent)) return;
+    var web = "https://play.google.com/store/apps/details?id=kr.manna.app";
+    document.getElementById("get").href =
+      "intent://details?id=kr.manna.app#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=" +
+      encodeURIComponent(web) + ";end";
+  })();
+</script>
+</body>
+</html>
