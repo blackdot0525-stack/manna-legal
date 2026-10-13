@@ -43,14 +43,22 @@
   <p class="hint">버튼이 열리지 않으면 오른쪽 위 ⋮ 메뉴에서<br />«브라우저에서 열기»를 눌러 주세요.</p>
 </main>
 <script>
-  // 인스타그램 등 앱 안 브라우저는 play.google.com 주소를 Play 스토어 앱으로 넘기지 못할 때가 있다.
-  // Android 에서는 Play 스토어 앱을 직접 여는 intent 주소를 쓰고, 열 수 없으면 웹 스토어로 넘어간다.
+  // 집결 /app 과 같은 방식(인스타그램 안 브라우저에서도 동작이 확인된 방식).
+  // 페이지가 열리면 바로 앱을 연다: 앱이 있으면 실행, 없으면 Android 가 Play 스토어 설치 화면으로 보낸다
+  // (package 를 지정한 intent). 자동 이동이 막히면 같은 목적지가 버튼에 남는다(탭 한 번).
   (function () {
-    if (!/Android/i.test(navigator.userAgent)) return;
-    var web = "https://play.google.com/store/apps/details?id=kr.manna.app";
-    document.getElementById("get").href =
-      "intent://details?id=kr.manna.app#Intent;scheme=market;package=com.android.vending;S.browser_fallback_url=" +
-      encodeURIComponent(web) + ";end";
+    var ua = navigator.userAgent || "";
+    var crawler = /bot|crawler|spider|facebookexternalhit|facebot|kakaotalk-scrap/i.test(ua);
+    if (!/Android/i.test(ua) || crawler) return;
+    var play = "https://play.google.com/store/apps/details?id=kr.manna.app";
+    var target = "intent://#Intent;scheme=manna;package=kr.manna.app;S.browser_fallback_url=" + encodeURIComponent(play) + ";end";
+    document.getElementById("get").href = target;
+    try {
+      // replace: 뒤로 가기가 이 자동 이동을 다시 밟지 않게.
+      window.location.replace(target);
+    } catch (_) {
+      // 막히면 버튼으로 이어 간다.
+    }
   })();
 </script>
 </body>
