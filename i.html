@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<!--
+  친구 초대 링크 (20261025020000, 오너 지시 2026-10-25 «코드 입력할 필요 없이 링크 타고 다운받고 앱 열면 자동 적용»).
+  주소: i.html?c=<초대 코드 8자리>. 회원마다 다르다. 검색에 걸리지 않게 noindex 이고 sitemap 에도 넣지 않는다.
+
+  - Android: 앱이 있으면 manna://invite?c=… 로 바로 열고, 없으면 Play 스토어로 보내며 설치 리퍼러(manna_ref=…)에 코드를 싣는다.
+    앱은 처음 열 때 리퍼러를 읽는다(src/features/referral). 사람이 코드를 입력하지 않는다.
+  - iPhone: App Store 가 설치에 링크를 넘겨주지 않는다. 출시 날(IOS_LIVE = true) App Store 버튼과 함께
+    «앱을 받았다면 여기를 눌러 주세요» 버튼이 manna://invite?c=… 로 앱을 열어 초대를 적용한다.
+    iPhone 출시일에 바꿀 곳: app.html 과 같다(아래 IOS_LIVE, id="ios" · id="ios-open" 의 hidden, id="ios-soon").
+-->
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>친구가 만나에 초대했어요</title>
+<meta name="description" content="이 링크로 만나를 받고 가입을 마치면 나와 친구 모두 꽃 3송이와 부스트 1회를 받아요." />
+<link rel="icon" type="image/png" href="./icon-192.png" />
+<meta property="og:type" content="website" />
+<meta property="og:locale" content="ko_KR" />
+<meta property="og:site_name" content="만나" />
+<meta property="og:title" content="친구가 만나에 초대했어요" />
+<meta property="og:description" content="이 링크로 받고 가입을 마치면 둘 다 꽃 3송이와 부스트 1회를 받아요." />
+<meta property="og:image" content="https://blackdot0525-stack.github.io/manna-legal/icon-512.png" />
+<style>
+  :root { --bg: #f7f2ec; --surface: #fffdfa; --text: #2b2228; --muted: #6f6168; --primary: #65324f; --on-primary: #ffffff; --border: #e6dcd3; --soft: #f1e8e0; }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #17131a; --surface: #211b24; --text: #f4ecef; --muted: #b9aab3; --primary: #c98aab; --on-primary: #1a1318; --border: #3a3040; --soft: #2b2330; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 24px 16px;
+         background: var(--bg); color: var(--text); font-family: system-ui, -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif; }
+  main { width: 100%; max-width: 380px; text-align: center; background: var(--surface); border: 1px solid var(--border);
+         border-radius: 28px; padding: 36px 24px 28px; }
+  img { width: 96px; height: 96px; border-radius: 22px; }
+  h1 { margin: 18px 0 8px; font-size: 24px; line-height: 1.35; }
+  p { margin: 0; color: var(--muted); line-height: 1.6; font-size: 15px; }
+  .gifts { display: flex; gap: 10px; margin-top: 20px; }
+  .gift { flex: 1; padding: 14px 8px; border-radius: 18px; background: var(--soft); font-weight: 700; font-size: 15px; color: var(--text); }
+  .gift span { display: block; font-size: 26px; line-height: 1.3; }
+  .cta { display: block; margin-top: 24px; padding: 16px 20px; border-radius: 999px; background: var(--primary); color: var(--on-primary);
+         font-size: 17px; font-weight: 700; text-decoration: none; min-height: 48px; }
+  .cta.secondary { margin-top: 12px; background: transparent; color: var(--primary); border: 1.5px solid var(--primary); }
+  .soon { margin-top: 16px; padding: 14px 16px; border-radius: 16px; border: 1px dashed var(--border); font-size: 14px; }
+  [hidden] { display: none !important; }
+  .hint { margin-top: 18px; font-size: 13px; }
+</style>
+</head>
+<body>
+<main>
+  <img src="./icon-512.png" alt="만나" />
+  <h1>친구가 만나에<br />초대했어요</h1>
+  <p>이 링크로 받고 가입을 마치면<br />나와 친구 모두 받아요.</p>
+  <div class="gifts" aria-label="받는 것">
+    <div class="gift"><span aria-hidden="true">🌸</span>꽃 3송이</div>
+    <div class="gift"><span aria-hidden="true">⚡</span>부스트 1회</div>
+  </div>
+  <a class="cta" id="get" href="https://play.google.com/store/apps/details?id=kr.manna.app">Google Play에서 받기</a>
+  <a class="cta" id="ios" href="https://apps.apple.com/kr/app/id6824235132" hidden>App Store에서 받기</a>
+  <a class="cta secondary" id="ios-open" href="manna://invite" hidden>앱을 받았다면 여기를 눌러 주세요</a>
+  <p class="soon" id="ios-soon" hidden>iPhone 버전은 준비 중이에요. Android 휴대폰이라면 이 링크를 그 휴대폰에서 열어 주세요.</p>
+  <p class="hint" id="hint">코드를 입력할 필요 없어요. 앱을 받아 가입만 하면 돼요.<br />버튼이 열리지 않으면 오른쪽 위 메뉴에서 «브라우저에서 열기»를 눌러 주세요.</p>
+</main>
+<script>
+  // iPhone 버전 공개 스위치. app.html 과 같은 날 함께 true 로 바꾼다.
+  var IOS_LIVE = false;
+  var PACKAGE = "kr.manna.app";
+  (function () {
+    var ua = navigator.userAgent || "";
+    var iOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && "ontouchend" in document);
+    var android = /Android/i.test(ua);
+    var crawler = /bot|crawler|spider|facebookexternalhit|facebot|kakaotalk-scrap/i.test(ua);
+    var match = /[?&]c=([A-Za-z0-9]{8})(?:&|$)/.exec(window.location.search || "");
+    var code = match ? match[1].toUpperCase() : "";
+    if (!/^[A-HJ-NP-Z2-9]{8}$/.test(code)) code = "";
+
+    var deep = "manna://invite" + (code ? "?c=" + code : "");
+    // 설치 리퍼러: Play 가 설치 뒤 앱에 그대로 넘겨준다(앱은 manna_ref 를 읽는다).
+    var play = "https://play.google.com/store/apps/details?id=" + PACKAGE + (code ? "&referrer=" + encodeURIComponent("manna_ref=" + code) : "");
+    var get = document.getElementById("get"), ios = document.getElementById("ios"), iosOpen = document.getElementById("ios-open"),
+        soon = document.getElementById("ios-soon");
+    get.href = play;
+    iosOpen.href = deep;
+
+    if (iOS) {
+      get.hidden = true;
+      if (IOS_LIVE) { ios.hidden = false; iosOpen.hidden = false; }
+      else { soon.hidden = false; document.getElementById("hint").hidden = true; }
+      return;
+    }
+    if (!android || crawler) return;
+    // Android: 앱이 있으면 초대 주소로 열고, 없으면 리퍼러를 실은 Play 설치 화면으로 간다(package 를 지정한 intent).
+    // 자동 이동이 막히면 같은 목적지가 버튼에 남는다(탭 한 번).
+    var target = "intent://invite" + (code ? "?c=" + code : "") + "#Intent;scheme=manna;package=" + PACKAGE
+               + ";S.browser_fallback_url=" + encodeURIComponent(play) + ";end";
+    get.href = target;
+    try { window.location.replace(target); } catch (_) {}
+  })();
+</script>
+</body>
+</html>
