@@ -73,15 +73,17 @@
     var crawler = /bot|crawler|spider|facebookexternalhit|facebot|kakaotalk-scrap/i.test(ua);
     var get = document.getElementById("get"), ios = document.getElementById("ios"), soon = document.getElementById("ios-soon"), web = document.getElementById("web");
     if (IOS_LIVE) { ios.hidden = false; soon.hidden = true; }
+    // 두 스토어를 어느 기기에서나 함께 보인다(오너 지시 2026-11-01 «ios도 함께») — 그 기기의 스토어를 앞에, 다른 쪽을 그 아래에.
+    // 링크를 받은 분이 다른 폰을 쓰는 가족 · 친구에게 넘겨도 바로 받을 수 있게.
     if (iOS) {
-      // iPhone 에서는 Google Play 를 앞에 두지 않는다.
-      get.hidden = true; web.hidden = true;
-      if (!IOS_LIVE) document.getElementById("hint").hidden = true;
-      if (IOS_LIVE) { ios.className = "cta"; web.href = APP_STORE; web.hidden = false; }
-      if (IOS_LIVE && !crawler) { try { window.location.replace(APP_STORE); } catch (_) {} }
+      if (!IOS_LIVE) { get.hidden = true; web.hidden = true; document.getElementById("hint").hidden = true; return; }
+      ios.className = "cta"; get.className = "cta secondary";
+      get.parentNode.insertBefore(ios, get);
+      web.href = APP_STORE;
+      if (!crawler) { try { window.location.replace(APP_STORE); } catch (_) {} }
       return;
     }
-    if (android) { soon.hidden = true; ios.hidden = true; }
+    if (android && !IOS_LIVE) { soon.hidden = true; ios.hidden = true; }
   })();
 
   // 집결 /app 과 같은 방식(인스타그램 안 브라우저에서도 동작이 확인된 방식).
