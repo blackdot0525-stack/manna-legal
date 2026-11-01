@@ -1,0 +1,4 @@
+{
+  "android": { "build": 50, "version": "1.0.3" },
+  "ios": { "build": 12, "version": "1.0.1" }
+}
