@@ -14,15 +14,17 @@
 -->
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="robots" content="noindex, nofollow" />
-<title>친구가 만나에 초대했어요</title>
-<meta name="description" content="이 링크로 만나를 받고 가입을 마치면 나와 친구 모두 꽃 3송이와 부스트 1회를 받아요." />
+<title>친구가 소개팅 앱 만나에 초대했어요</title>
+<meta name="description" content="사진에서 시작해 가치관으로 알아가는 소개팅 앱. 이 링크로 받고 가입을 마치면 둘 다 꽃 3송이와 부스트 1회를 받아요." />
 <link rel="icon" type="image/png" href="./icon-192.png" />
 <meta property="og:type" content="website" />
 <meta property="og:locale" content="ko_KR" />
 <meta property="og:site_name" content="만나" />
-<meta property="og:title" content="친구가 만나에 초대했어요" />
-<meta property="og:description" content="이 링크로 받고 가입을 마치면 둘 다 꽃 3송이와 부스트 1회를 받아요." />
-<meta property="og:image" content="https://blackdot0525-stack.github.io/manna-legal/icon-512.png" />
+<meta property="og:title" content="친구가 소개팅 앱 만나에 초대했어요" />
+<meta property="og:description" content="사진에서 시작해 가치관으로 알아가는 소개팅 앱. 이 링크로 받고 가입을 마치면 둘 다 꽃 3송이와 부스트 1회를 받아요." />
+<meta property="og:image" content="https://manna-match.pages.dev/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
 <style>
   :root { --bg: #f7f2ec; --surface: #fffdfa; --text: #2b2228; --muted: #6f6168; --primary: #65324f; --on-primary: #ffffff; --border: #e6dcd3; --soft: #f1e8e0; }
   @media (prefers-color-scheme: dark) {
@@ -45,13 +47,18 @@
   .soon { margin-top: 16px; padding: 14px 16px; border-radius: 16px; border: 1px dashed var(--border); font-size: 14px; }
   [hidden] { display: none !important; }
   .hint { margin-top: 18px; font-size: 13px; }
+  .tag { margin-top: 14px; color: var(--primary); font-weight: 700; font-size: 15px; }
+  .about { margin-top: 4px; font-size: 14px; }
+  .reward { margin-top: 14px; }
 </style>
 </head>
 <body>
 <main>
   <img src="./icon-512.png" alt="만나" />
+  <p class="tag">만나 · 가치관으로 알아가는 소개팅 앱</p>
   <h1>친구가 만나에<br />초대했어요</h1>
-  <p>이 링크로 받고 가입을 마치면<br />나와 친구 모두 받아요.</p>
+  <p class="about">사진에서 시작해 서로의 가치관과 일상을 천천히 알아가는, 진지한 만남을 위한 소개팅 앱이에요.</p>
+  <p class="reward">이 링크로 받고 가입을 마치면<br />나와 친구 모두 받아요.</p>
   <div class="gifts" aria-label="받는 것">
     <div class="gift"><span aria-hidden="true">🌸</span>꽃 3송이</div>
     <div class="gift"><span aria-hidden="true">⚡</span>부스트 1회</div>
@@ -97,8 +104,8 @@
       else { soon.hidden = false; document.getElementById("hint").hidden = true; }
       return;
     }
-    // PC 등: 두 스토어를 다 보여 준다.
-    if (!android && IOS_LIVE) { ios.hidden = false; ios.className = "cta secondary"; }
+    // Android · PC 에서도 App Store 버튼을 아래에 함께 보인다(오너 2026-11-03 — 링크를 iPhone 쓰는 친구에게 넘겨도 바로 받게).
+    if (IOS_LIVE) { ios.hidden = false; ios.className = "cta secondary"; }
     if (!android || crawler) return;
     // Android: 앱이 있으면 초대 주소로 열고, 없으면 리퍼러를 실은 Play 설치 화면으로 간다(package 를 지정한 intent).
     // 자동 이동이 막히면 같은 목적지가 버튼에 남는다(탭 한 번).
