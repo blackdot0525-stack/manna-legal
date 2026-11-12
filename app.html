@@ -66,6 +66,11 @@
   // false 인 동안 iPhone 방문자에게는 «준비 중»을 말하고, 없는 App Store 페이지로 보내지 않는다.
   var IOS_LIVE = true; // 2026-10-27 App Store 공개(«만나 - 가치관 소개» 1.0) — 오너 지시 2026-11-01 «ios도 넣자»
   var APP_STORE = "https://apps.apple.com/kr/app/id6824235132";
+  // 어디서 왔는지(?src=blog 등)를 Play 설치 리퍼러에 실어 Play Console 획득 보고서에서 경로별 설치를 본다.
+  var SRC = (/[?&]src=([a-z0-9-]{1,30})(?:&|$)/.exec(location.search) || [])[1];
+  var PLAY = "https://play.google.com/store/apps/details?id=kr.manna.app" + (SRC ? "&referrer=" + encodeURIComponent("utm_source=" + SRC + "&utm_medium=web") : "");
+  document.getElementById("get").href = PLAY;
+  document.getElementById("web").href = PLAY;
   (function () {
     var ua = navigator.userAgent || "";
     var iOS = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && "ontouchend" in document);
@@ -93,8 +98,7 @@
     var ua = navigator.userAgent || "";
     var crawler = /bot|crawler|spider|facebookexternalhit|facebot|kakaotalk-scrap/i.test(ua);
     if (!/Android/i.test(ua) || crawler) return;
-    var play = "https://play.google.com/store/apps/details?id=kr.manna.app";
-    var target = "intent://#Intent;scheme=manna;package=kr.manna.app;S.browser_fallback_url=" + encodeURIComponent(play) + ";end";
+    var target = "intent://#Intent;scheme=manna;package=kr.manna.app;S.browser_fallback_url=" + encodeURIComponent(PLAY) + ";end";
     document.getElementById("get").href = target;
     try {
       // replace: 뒤로 가기가 이 자동 이동을 다시 밟지 않게.
